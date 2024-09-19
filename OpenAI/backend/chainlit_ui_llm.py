@@ -6,14 +6,14 @@ from chromadb.utils import embedding_functions
 import openai
 from flask import request
 from chainlit import user_session as session
-import requests  # Add this import to make HTTP requests
+import requests
 
 # Flask server URL
 from flask_server import server_url
 FLASK_SERVER_URL = server_url
 
 # Set OpenAI API key
-openai_api_key = os.getenv("OPENAI_API_KEY")  # Ensure your OpenAI API key is set in the environment variables
+openai.api_key = os.getenv("OPENAI_API_KEY")  # Ensure your OpenAI API key is set in the environment variables
 model_name = "gpt-3.5-turbo"  # Change to "gpt-4" if preferred
 
 def build_prompt(query: str, context: List[str]) -> List[dict]:
@@ -79,23 +79,10 @@ async def handle_message(message: cl.Message):
     client = chromadb.PersistentClient(path="chroma_storage")
 
     # Create embedding function
-        """
-    The following OpenAI Embedding Models are supported:
-
-text-embedding-ada-002
-text-embedding-3-small
-text-embedding-3-large
-More Info
-
-Visit OpenAI Embeddings documentation for more information.
-This embedding function relies on the openai python package, which you can install with pip install openai.
-
-You can pass in an optional model_name argument, which lets you choose which OpenAI embeddings model to use. By default, Chroma uses text-embedding-ada-002."""
-
     embedding_function = embedding_functions.OpenAIEmbeddingFunction(
-                api_key=open_api_key,
-                model_name="text-embedding-3-small"
-            )
+        api_key=openai.api_key,
+        model_name="text-embedding-3-small"
+    )
 
     # Get the collection
     collection = client.get_collection(
