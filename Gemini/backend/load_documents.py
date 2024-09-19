@@ -87,26 +87,26 @@ def main(
                 metadatas.append({"filename": filename, "line_number": line_number})
 
     # Instantiate a persistent chroma client in the persist_directory.
+       # Check if the GOOGLE_API_KEY environment variable is set. Prompt the user to set it if not.
+    #google_api_key = None
+    google_api_key = os.getenv("GOOGLE_API_KEY")
+    if  google_api_key == None :
+        gapikey = input("Please enter your Google API Key: ")
+        genai.configure(api_key=gapikey)
+        google_api_key = gapikey
+    else:
+        #google_api_key = os.environ["GOOGLE_API_KEY"]
+        google_api_key = os.getenv("GOOGLE_API_KEY")
+
+    # Instantiate a persistent chroma client in the persist_directory.
+    # This will automatically load any previously saved collections.
+    # Learn more at docs.trychroma.com
     client = chromadb.PersistentClient(path=persist_directory)
 
-    """
-    The following OpenAI Embedding Models are supported:
-
-text-embedding-ada-002
-text-embedding-3-small
-text-embedding-3-large
-More Info
-
-Visit OpenAI Embeddings documentation for more information.
-This embedding function relies on the openai python package, which you can install with pip install openai.
-
-You can pass in an optional model_name argument, which lets you choose which OpenAI embeddings model to use. By default, Chroma uses text-embedding-ada-002."""
-
-    api_key = os.getenv("OPENAI_API_KEY")
-    embedding_function = embedding_functions.OpenAIEmbeddingFunction(
-                api_key=api_key,
-                model_name="text-embedding-3-small"
-            )
+    # create embedding function
+    embedding_function = embedding_functions.GoogleGenerativeAIEmbeddingFunction(
+        api_key=google_api_key, task_type="RETRIEVAL_QUERY"
+    )
 
     # If the collection already exists, load it, or create a new one
     collection = client.get_or_create_collection(
