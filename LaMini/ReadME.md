@@ -4,7 +4,7 @@ OpenGPT is a context-aware chatbot designed to provide precise and useful inform
 
 ## Offline Usage
 
-The OpenGPT-LaMini, powered by LaMini-T5-738M, is an application is designed to operate completely offline, with the exception of the embedding functionality, which can also be handled offline. The application does not require an internet connection for its core features once set up.
+The OpenGPT-LaMini, powered by [LaMini-T5-738M](https://huggingface.co/MBZUAI/LaMini-T5-738M), is an application is designed to operate completely offline, with the exception of the embedding functionality, which can also be handled offline. The application does not require an internet connection for its core features once set up.
 
 ## Project Structure
 
