@@ -99,9 +99,9 @@ This embedding function relies on the openai python package, which you can insta
 
 You can pass in an optional model_name argument, which lets you choose which OpenAI embeddings model to use. By default, Chroma uses text-embedding-ada-002."""
 
-    
+    api_key = os.getenv(OPENAPI_KEY)
     embedding_function = embedding_functions.OpenAIEmbeddingFunction(
-                api_key="YOUR_API_KEY",
+                api_key=api_key,
                 model_name="text-embedding-3-small"
             )
 
