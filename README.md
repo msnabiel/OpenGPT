@@ -1,6 +1,10 @@
 # OpenGPT
 
-OpenGPT is a versatile chatbot framework designed to handle various document formats and provide accurate information based on the context. The framework integrates with multiple language models, including OpenAI, Gemini, and LaMini, each tailored to different use cases and requirements.
+OpenGPT is a specialized chatbot framework that utilizes ChromaDB to deliver answers based solely on a specific knowledge base. It integrates with various language models, including OpenAI, Gemini, and LaMini, to provide precise information relevant to the context of the query. Users can upload documents to the knowledge base and modify it as needed to tailor the chatbot's responses to their requirements.
+
+## Snapshots
+
+![Diagram](images/image_1.png)
 
 ## Project Structure
 
@@ -22,9 +26,6 @@ The project contains the following key directories:
 - **Session Management**: Chainlit.
 - **Vector Store**: ChromaDB.
 
-## Snapshots
-
-![Diagram](images/image_1.png)
 
 ## Contributing
 
