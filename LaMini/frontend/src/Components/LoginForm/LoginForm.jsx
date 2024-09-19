@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './LoginForm.css';
 import { FaLock, FaUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import { auth } from '../../../firebaseConfig'; // Import your Firebase config
+import { auth } from '../../firebaseConfig'; // Import your Firebase config
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const LoginForm = () => {
