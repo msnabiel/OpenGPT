@@ -86,20 +86,24 @@ def main(
     # Instantiate a persistent chroma client in the persist_directory.
     client = chromadb.PersistentClient(path=persist_directory)
 
-    # Check for Google API Key or use Hugging Face embeddings
-    """google_api_key = None
-    if "GOOGLE_API_KEY" not in os.environ:
-        gapikey = input("Please enter your Google API Key: ")
-        genai.configure(api_key=gapikey)
-        google_api_key = gapikey
-    else:
-        google_api_key = os.environ["GOOGLE_API_KEY"]"""
+    """
+    The following OpenAI Embedding Models are supported:
 
-    # Example of using Hugging Face embedding function
-    embedding_function = embedding_functions.HuggingFaceEmbeddingFunction(
-        api_key="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",
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
-    )
+text-embedding-ada-002
+text-embedding-3-small
+text-embedding-3-large
+More Info
+
+Visit OpenAI Embeddings documentation for more information.
+This embedding function relies on the openai python package, which you can install with pip install openai.
+
+You can pass in an optional model_name argument, which lets you choose which OpenAI embeddings model to use. By default, Chroma uses text-embedding-ada-002."""
+
+    
+    embedding_function = embedding_functions.OpenAIEmbeddingFunction(
+                api_key="YOUR_API_KEY",
+                model_name="text-embedding-3-small"
+            )
 
     # If the collection already exists, load it, or create a new one
     collection = client.get_or_create_collection(
