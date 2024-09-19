@@ -14,17 +14,17 @@ The project contains the following key directories:
 - **[OpenGPT/OpenAI/](/OpenAI/)** - Contains integration code for the OpenAI API, including utilities for leveraging OpenAI’s models.
 - **[OpenGPT/LaMini/](/LaMini/)** - Contains integration code for LaMini models, including utilities for using these models in NLP tasks.
 
-## Tech Stack
+## Key Tech Stack
 
-- **OpenAI API**: For natural language processing and embeddings.
-- **Gemini**: For advanced generative AI tasks.
-- **LaMini**: For offline capabilities and document handling.
-- **Text Extraction**: Tesseract OCR for optical character recognition.
-- **Image Processing**: PIL (Python Imaging Library).
-- **Backend**: Flask (Python).
-- **Frontend**: React (JavaScript).
-- **Session Management**: Chainlit.
-- **Vector Store**: ChromaDB.
+- **[OpenAI API](https://beta.openai.com/docs/)**: For natural language processing and embeddings.
+- **[Gemini](https://cloud.google.com/ai-platform/gemini)**: For advanced generative AI tasks.
+- **[LaMini](https://huggingface.co/MBZUAI/LaMini)**: For offline capabilities and document handling.
+- **[Text Extraction](https://github.com/tesseract-ocr/tesseract)**: Tesseract OCR for optical character recognition.
+- **[Image Processing](https://pillow.readthedocs.io/en/stable/)**: PIL (Python Imaging Library).
+- **[Backend](https://flask.palletsprojects.com/en/latest/)**: Flask (Python).
+- **[Frontend](https://reactjs.org/docs/getting-started.html)**: React (JavaScript).
+- **[Session Management](https://docs.chainlit.io/)**: Chainlit.
+- **[Vector Store](https://docs.trychroma.com/)**: ChromaDB.
 
 
 ## Contributing
