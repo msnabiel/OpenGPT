@@ -16,15 +16,15 @@ The project contains the following key directories:
 
 ## Key Tech Stack
 
-- **[OpenAI API](https://beta.openai.com/docs/)**: For natural language processing and embeddings.
-- **[Gemini](https://cloud.google.com/ai-platform/gemini)**: For advanced generative AI tasks.
-- **[LaMini](https://huggingface.co/MBZUAI/LaMini)**: For offline capabilities and document handling.
-- **[Text Extraction](https://github.com/tesseract-ocr/tesseract)**: Tesseract OCR for optical character recognition.
-- **[Image Processing](https://pillow.readthedocs.io/en/stable/)**: PIL (Python Imaging Library).
-- **[Backend](https://flask.palletsprojects.com/en/latest/)**: Flask (Python).
-- **[Frontend](https://reactjs.org/docs/getting-started.html)**: React (JavaScript).
-- **[Session Management](https://docs.chainlit.io/)**: Chainlit.
-- **[Vector Store](https://docs.trychroma.com/)**: ChromaDB.
+- **[OpenAI API](https://beta.openai.com/docs/)** - For natural language processing and embeddings.
+- **[Gemini](https://cloud.google.com/ai-platform/gemini)** - For advanced generative AI tasks.
+- **[LaMini](https://huggingface.co/MBZUAI/LaMini)** - For offline capabilities and document handling.
+- **[Text Extraction](https://github.com/tesseract-ocr/tesseract)** - Tesseract OCR for optical character recognition.
+- **[Image Processing](https://pillow.readthedocs.io/en/stable/)** - PIL (Python Imaging Library).
+- **[Backend](https://flask.palletsprojects.com/en/latest/)** - Flask (Python).
+- **[Frontend](https://reactjs.org/docs/getting-started.html)** - React (JavaScript).
+- **[Session Management](https://docs.chainlit.io/)** - Chainlit.
+- **[Vector Store](https://docs.trychroma.com/)** - ChromaDB.
 
 
 ## Contributing
