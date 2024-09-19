@@ -13,7 +13,8 @@ from flask_server import server_url
 FLASK_SERVER_URL = server_url
 
 # Set OpenAI API key
-openai.api_key = os.getenv("OPENAI_API_KEY")  # Ensure your OpenAI API key is set in the environment variables
+openai_api_key = os.getenv("OPENAI_API_KEY")  # Ensure your OpenAI API key is set in the environment variables
+model_name = "gpt-3.5-turbo"  # Change to "gpt-4" if preferred
 
 def build_prompt(query: str, context: List[str]) -> List[dict]:
     """
@@ -68,7 +69,7 @@ async def on_chat_start():
     cl.user_session.set("history", [])
     cl.user_session.set("context", [])
 
-    await cl.Message(content="Hello, I am OpenGPT. How can I assist you today?").send()
+    await cl.Message(content="Hello, I am OpenGPT-OpenAI. How can I assist you today?").send()
 
 @cl.on_message
 async def handle_message(message: cl.Message):
@@ -78,10 +79,23 @@ async def handle_message(message: cl.Message):
     client = chromadb.PersistentClient(path="chroma_storage")
 
     # Create embedding function
-    embedding_function = embedding_functions.HuggingFaceEmbeddingFunction(
-        api_key="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",
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
-    )
+        """
+    The following OpenAI Embedding Models are supported:
+
+text-embedding-ada-002
+text-embedding-3-small
+text-embedding-3-large
+More Info
+
+Visit OpenAI Embeddings documentation for more information.
+This embedding function relies on the openai python package, which you can install with pip install openai.
+
+You can pass in an optional model_name argument, which lets you choose which OpenAI embeddings model to use. By default, Chroma uses text-embedding-ada-002."""
+
+    embedding_function = embedding_functions.OpenAIEmbeddingFunction(
+                api_key=open_api_key,
+                model_name="text-embedding-3-small"
+            )
 
     # Get the collection
     collection = client.get_collection(
@@ -100,7 +114,6 @@ async def handle_message(message: cl.Message):
     ) if results["metadatas"] else ""
 
     # Get the response from OpenAI
-    model_name = "gpt-3.5-turbo"  # Change to "gpt-4" if preferred
     response = get_openai_response(message_content, context, model_name)
 
     # Get history and context from the session
