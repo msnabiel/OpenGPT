@@ -28,7 +28,7 @@ def start_chainlit():
         print("Starting Chainlit application...")
         # Start Chainlit in a non-blocking way without reading output
         chainlit_process = subprocess.Popen(
-            ["chainlit", "run", "chainlit_ui.py", "-h"],
+            ["chainlit", "run", "chainlit_ui_llm.py", "-h"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
