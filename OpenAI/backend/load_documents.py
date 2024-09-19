@@ -10,7 +10,10 @@ import pytesseract
 import chromadb
 from chromadb.utils import embedding_functions
 import google.generativeai as genai
+from dotenv import load_dotenv
 
+# Load the .env file
+load_dotenv()
 
 def extract_text_from_pdf(pdf_path):
     """Extract text from a PDF file."""
@@ -58,7 +61,7 @@ def extract_text_from_file(file_path):
 
 
 def main(
-    documents_directory: str = "backend/documents",
+    documents_directory: str = "../documents",
     collection_name: str = "documents_collection",
     persist_directory: str = ".",
 ) -> None:
@@ -99,7 +102,7 @@ This embedding function relies on the openai python package, which you can insta
 
 You can pass in an optional model_name argument, which lets you choose which OpenAI embeddings model to use. By default, Chroma uses text-embedding-ada-002."""
 
-    api_key = os.getenv(OPENAPI_KEY)
+    api_key = os.getenv("OPENAI_API_KEY")
     embedding_function = embedding_functions.OpenAIEmbeddingFunction(
                 api_key=api_key,
                 model_name="text-embedding-3-small"
