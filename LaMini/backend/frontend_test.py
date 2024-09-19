@@ -77,7 +77,7 @@ async def on_chat_start():
     cl.user_session.set("history", [])
     cl.user_session.set("context", [])
 
-    await cl.Message(content="Hello, I am OpenGPT. How can I assist you today?").send()
+    await cl.Message(content="Hello, I am OpenGPT, Powered by LaMini. How can I assist you today?").send()
 
 
 @cl.on_message
