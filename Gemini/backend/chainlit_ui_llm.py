@@ -7,7 +7,7 @@ import google.generativeai as genai
 import requests
 
 # Initialize the Gemini model
-model = genai.GenerativeModel("gemini-pro")
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 # Flask server URL
 from flask_server import server_url
