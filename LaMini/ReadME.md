@@ -74,7 +74,7 @@ Run the script to load the documents into the backend:
 
 ```bash
 cd ../backend
-python doc_load_combine.py
+python load_documents.py
 ```
 
 ### 7. Start the Frontend
