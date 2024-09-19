@@ -58,7 +58,7 @@ def extract_text_from_file(file_path):
 
 
 def main(
-    documents_directory: str = "documents",
+    documents_directory: str = "backend/documents",
     collection_name: str = "documents_collection",
     persist_directory: str = ".",
 ) -> None:
@@ -87,13 +87,13 @@ def main(
     client = chromadb.PersistentClient(path=persist_directory)
 
     # Check for Google API Key or use Hugging Face embeddings
-    google_api_key = None
+    """google_api_key = None
     if "GOOGLE_API_KEY" not in os.environ:
         gapikey = input("Please enter your Google API Key: ")
         genai.configure(api_key=gapikey)
         google_api_key = gapikey
     else:
-        google_api_key = os.environ["GOOGLE_API_KEY"]
+        google_api_key = os.environ["GOOGLE_API_KEY"]"""
 
     # Example of using Hugging Face embedding function
     embedding_function = embedding_functions.HuggingFaceEmbeddingFunction(
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--documents_directory",
         type=str,
-        default="documents",
+        default="backend/documents",
         help="The directory where your files (PDFs, PPTs, images, text) are stored",
     )
     parser.add_argument(
