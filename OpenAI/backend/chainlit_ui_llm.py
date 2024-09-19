@@ -97,8 +97,8 @@ async def handle_message(message: cl.Message):
     # Extract context and sources
     context = results["documents"][0] if results["documents"] else []  # Handle empty results
     sources = "\n".join(
-        [f"{result['filename']}: line {result['line_number']}" for result in results["metadatas"][0]]
-    ) if results["metadatas"] else ""
+        [f"{metadata['filename']}: line {metadata['line_number']}" for metadata in results["metadatas"][0]]
+    ) if results["metadatas"] else "No sources found"
 
     # Get the response from OpenAI
     response = get_openai_response(message_content, context, model_name)
@@ -115,8 +115,11 @@ async def handle_message(message: cl.Message):
     cl.user_session.set("history", history)
     cl.user_session.set("context", current_context)
 
-    # Send the response
-    await cl.Message(content=response).send()
+    # Combine the response and sources for the final message
+    full_response = f"{response}\n\n**Sources:**\n{sources}"
+
+    # Send the combined response
+    await cl.Message(content=full_response).send()
 
 def fetch_user_id_from_flask() -> str:
     try:
