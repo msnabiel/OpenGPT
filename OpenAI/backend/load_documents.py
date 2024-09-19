@@ -61,7 +61,7 @@ def extract_text_from_file(file_path):
 
 
 def main(
-    documents_directory: str = "../documents",
+    documents_directory: str = "./documents",
     collection_name: str = "documents_collection",
     persist_directory: str = ".",
 ) -> None:
@@ -142,7 +142,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--documents_directory",
         type=str,
-        default="backend/documents",
+        default="./documents",
         help="The directory where your files (PDFs, PPTs, images, text) are stored",
     )
     parser.add_argument(
