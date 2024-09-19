@@ -2,7 +2,7 @@
 
 OpenGPT is a context-aware chatbot designed to provide precise and useful information from a comprehensive knowledge base. The chatbot integrates with various document formats and handles multiple use cases, including FAQs and escalation handling.
 
-## Offline Usage
+## API Usage
 
 OpenGPT, powered by OpenAI API, can operate mostly offline after initial setup. However, embedding functionality and API calls require an internet connection to access the OpenAI services.
 
