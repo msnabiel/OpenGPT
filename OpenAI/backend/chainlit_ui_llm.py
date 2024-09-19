@@ -3,67 +3,58 @@ import os
 from typing import List
 import chromadb
 from chromadb.utils import embedding_functions
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
+import openai
 from flask import request
 from chainlit import user_session as session
 import requests  # Add this import to make HTTP requests
 
 # Flask server URL
-#FLASK_SERVER_URL = "http://127.0.0.1:7000"
 from flask_server import server_url
 FLASK_SERVER_URL = server_url
 
+# Set OpenAI API key
+openai.api_key = os.getenv("OPENAI_API_KEY")  # Ensure your OpenAI API key is set in the environment variables
 
-# Load LaMini model and tokenizer
-checkpoint = "../LaMini-T5-738M"
-tokenizer = AutoTokenizer.from_pretrained(checkpoint)
-base_model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint)
+def build_prompt(query: str, context: List[str]) -> List[dict]:
+    """
+    Builds a prompt for the LLM in OpenAI's format.
 
-# Create a text generation pipeline using the LaMini model
-generator = pipeline(
-    'text2text-generation', 
-    model=base_model, 
-    tokenizer=tokenizer, 
-    max_length=256,
-    do_sample=True,
-    temperature=0.3,
-    top_p=0.95
-)
+    Args:
+    query (str): The original query.
+    context (List[str]): The context of the query, returned by embedding search.
 
-def build_prompt(query: str, context: List[str]) -> str:
-    base_prompt = {
-        "content": "I am going to ask you a question, which I would like you to answer"
-        " based only on the provided context, and not any other information."
-        " If there is not enough information in the context to answer the question,"
-        ' say "I am not sure", then try to make a guess.'
-        " Break your answer up into nicely readable paragraphs.",
-    }
-    user_prompt = {
-        "content": f" The question is '{query}'. Here is all the context you have:"
-        f'{(" ").join(context)}',
-    }
+    Returns:
+    A list of messages for the LLM.
+    """
+    return [
+        {"role": "system", "content": (
+            "I am going to ask you a question, which I would like you to answer"
+            " based only on the provided context, and not any other information."
+            " If there is not enough information in the context to answer the question,"
+            ' say "I am not sure", then try to make a guess.'
+            " Break your answer up into nicely readable paragraphs."
+        )},
+        {"role": "user", "content": f"The question is '{query}'. Here is all the context you have:"
+        f'{(" ").join(context)}'}
+    ]
 
-    # Combine the prompts to output a single prompt string
-    system = f"{base_prompt['content']} {user_prompt['content']}"
-    return system
+def get_openai_response(query: str, context: List[str], model_name: str) -> str:
+    """
+    Queries the OpenAI API to get a response to the question.
 
-def get_lamini_response(query: str, context: List[str]) -> str:
-    # Generate a response using the LaMini model pipeline
-    prompt = build_prompt(query, context)
-    response = generator(prompt)[0]['generated_text']
-    return response
+    Args:
+    query (str): The original query.
+    context (List[str]): The context of the query, returned by embedding search.
+    model_name (str): The OpenAI model to use (e.g., "gpt-3.5-turbo" or "gpt-4").
 
-def fetch_user_id_from_flask() -> str:
-    try:
-        response = requests.get(f"{FLASK_SERVER_URL}/")
-        response.raise_for_status()  # Raises an HTTPError for bad responses
-        data = response.json()
-        #global hi
-        #hi = str(data.get('user_id', 'default_user'))
-        return data.get('user_id', 'default_user')
-    except requests.RequestException as e:
-        print(f"Error fetching user_id from Flask: {e}")
-        return 'default_user'
+    Returns:
+    A response to the question.
+    """
+    response = openai.ChatCompletion.create(
+        model=model_name,
+        messages=build_prompt(query, context)
+    )
+    return response.choices[0].message['content']
 
 @cl.on_chat_start
 async def on_chat_start():
@@ -79,10 +70,8 @@ async def on_chat_start():
 
     await cl.Message(content="Hello, I am OpenGPT. How can I assist you today?").send()
 
-
 @cl.on_message
 async def handle_message(message: cl.Message):
-    #print(hi)
     message_content = message.content  # Extract content from the message
 
     # Instantiate a persistent chroma client
@@ -110,8 +99,9 @@ async def handle_message(message: cl.Message):
         [f"{result['filename']}: line {result['line_number']}" for result in results["metadatas"][0]]
     ) if results["metadatas"] else ""
 
-    # Get the response from LaMini
-    response = get_lamini_response(message_content, context)
+    # Get the response from OpenAI
+    model_name = "gpt-3.5-turbo"  # Change to "gpt-4" if preferred
+    response = get_openai_response(message_content, context, model_name)
 
     # Get history and context from the session
     history = cl.user_session.get("history", [])
@@ -127,6 +117,15 @@ async def handle_message(message: cl.Message):
 
     # Send the response
     await cl.Message(content=response).send()
+
+def fetch_user_id_from_flask() -> str:
+    try:
+        response = requests.get(f"{FLASK_SERVER_URL}/")
+        response.raise_for_status()  # Raises an HTTPError for bad responses
+        return response.json().get('user_id', 'default_user')
+    except requests.RequestException as e:
+        print(f"Error fetching user_id from Flask: {e}")
+        return 'default_user'
 
 # Entry point for Chainlit
 if __name__ == "__main__":
