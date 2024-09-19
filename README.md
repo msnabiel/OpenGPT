@@ -24,7 +24,7 @@ The project contains the following key directories:
 
 ## Snapshots
 
-![Diagram](images/image_one.png)
+![Diagram](images/image_1.png)
 
 ## Contributing
 
