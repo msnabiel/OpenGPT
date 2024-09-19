@@ -4,24 +4,24 @@ OpenGPT is a context-aware chatbot designed to provide precise and useful inform
 
 ## API Usage
 
-OpenGPT, powered by OpenAI API, can operate mostly offline after initial setup. However, embedding functionality and API calls require an internet connection to access the OpenAI services.
+OpenGPT, powered by Gemini API, can operate mostly offline after initial setup. However, embedding functionality and API calls require an internet connection to access the Gemini services.
 
 ## Project Structure
 
 The project is organized as follows:
 
-- `OpenGPT/OpenAI/frontend/` - Contains the frontend application code.
-- `OpenGPT/OpenAI/backend/` - Contains the backend application code.
+- `OpenGPT/Gemini/frontend/` - Contains the frontend application code.
+- `OpenGPT/Gemini/backend/` - Contains the backend application code.
 
 ## Tech Stack
 
-- **Model**: OpenAI API for natural language processing - [OpenAI Documentation](https://beta.openai.com/docs/)
+- **Model**: Gemini API for natural language processing - [Gemini Documentation](https://beta.openai.com/docs/)
 - **Text Extraction**: Tesseract OCR for optical character recognition - [Tesseract OCR Documentation](https://github.com/tesseract-ocr/tesseract)
 - **Image Processing**: PIL (Python Imaging Library) - [PIL Documentation](https://pillow.readthedocs.io/en/stable/)
 - **Backend**: Flask (Python) - [Flask Documentation](https://flask.palletsprojects.com/en/latest/)
 - **Frontend**: React (JavaScript) - [React Documentation](https://reactjs.org/docs/getting-started.html)
 - **Session Management**: Chainlit - [Chainlit Documentation](https://docs.chainlit.io/)
-- **Embeddings**: OpenAI API - [OpenAI Embeddings Documentation](https://beta.openai.com/docs/)
+- **Embeddings**: Gemini API - [Gemini Embeddings Documentation](https://beta.openai.com/docs/)
 - **Vector Store**: ChromaDB - [ChromaDB Documentation](https://docs.trychroma.com/)
 
 ## Getting Started
@@ -32,7 +32,7 @@ To set up and run the project, follow these steps:
 
 ```bash
 git clone https://github.com/msnabiel/OpenGPT.git
-cd OpenGPT/OpenAI
+cd OpenGPT/Gemini
 ```
 
 ### 2. Set Up Git LFS (Optional)
@@ -56,7 +56,7 @@ npm install
 
 Upload your documents to the `documents` folder located in the `backend` directory. Ensure the documents are properly formatted and ready for processing.
 
-### 5. Set Up Your OpenAI API Key
+### 5. Set Up Your Gemini API Key
 
 1. Navigate to the `backend` directory:
 
@@ -64,16 +64,16 @@ Upload your documents to the `documents` folder located in the `backend` directo
    cd ../backend
    ```
 
-2. Create a `.env` file in the `backend` directory and add your OpenAI API key:
+2. Create a `.env` file in the `backend` directory and add your Gemini API key:
 
    ```bash
    touch .env
    ```
 
-3. Open the `.env` file and add your OpenAI API key like this:
+3. Open the `.env` file and add your Gemini API key like this:
 
    ```plaintext
-   OPENAI_API_KEY=your_openai_api_key_here
+   GEMINI_API_KEY=your_gemini_api_key_here
    ```
 
 4. Save the file.
