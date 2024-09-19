@@ -11,8 +11,8 @@ OpenGPT is a specialized chatbot framework that utilizes ChromaDB to deliver ans
 The project contains the following key directories:
 
 - **[OpenGPT/Gemini/](/Gemini/)** - Contains integration code for the Gemini API, including utilities for interacting with Gemini’s NLP models.
-- **[OpenGPT/OpenAI/](OpenGPT/OpenAI/)** - Contains integration code for the OpenAI API, including utilities for leveraging OpenAI’s models.
-- **[OpenGPT/LaMini/](OpenGPT/LaMini/)** - Contains integration code for LaMini models, including utilities for using these models in NLP tasks.
+- **[OpenGPT/OpenAI/](/OpenAI/)** - Contains integration code for the OpenAI API, including utilities for leveraging OpenAI’s models.
+- **[OpenGPT/LaMini/](/LaMini/)** - Contains integration code for LaMini models, including utilities for using these models in NLP tasks.
 
 ## Tech Stack
 
