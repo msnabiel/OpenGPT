@@ -96,5 +96,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 
 For any questions or support, please reach out to [Nabiel](mailto:msyednabiel@gmail.com).
-```
 
