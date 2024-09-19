@@ -14,7 +14,8 @@ FLASK_SERVER_URL = server_url
 
 # Set OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")  # Ensure your OpenAI API key is set in the environment variables
-model_name = "gpt-3.5-turbo"  # Change to "gpt-4" if preferred
+#model_name = "gpt-3.5-turbo"  # Change to "gpt-4" if preferred
+model_name = "gpt-4o-mini" # Change to "gpt-4o" if preferred
 
 def build_prompt(query: str, context: List[str]) -> List[dict]:
     """
@@ -46,7 +47,7 @@ def get_openai_response(query: str, context: List[str], model_name: str) -> str:
     Args:
     query (str): The original query.
     context (List[str]): The context of the query, returned by embedding search.
-    model_name (str): The OpenAI model to use (e.g., "gpt-3.5-turbo" or "gpt-4").
+    model_name (str): The OpenAI model to use (e.g., "gpt-4o-mini" or "gpt-4o").
 
     Returns:
     A response to the question.
