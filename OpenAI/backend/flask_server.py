@@ -17,7 +17,7 @@ def is_chainlit_running() -> bool:
     """Check if Chainlit is running."""
     for proc in psutil.process_iter(['pid', 'name', 'cmdline']):
         cmdline = proc.info.get('cmdline')
-        if cmdline and 'frontend_test.py' in cmdline:
+        if cmdline and 'chainlit_ui_llm.py' in cmdline:
             return True
     return False
 
