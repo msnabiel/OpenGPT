@@ -1,6 +1,6 @@
 # OpenGPT
 
-[OpenGPT](https://github.com/msnabiel/OpenGPT) is a specialized chatbot framework that utilizes [ChromaDB](https://github.com/chroma-core/chroma) to deliver answers based solely on a specific knowledge base. It integrates with various language models, including OpenAI, Gemini, and LaMini, to provide precise information relevant to the context of the query. Users can upload documents to the knowledge base and modify it as needed to tailor the chatbot's responses to their requirements.
+[OpenGPT](https://github.com/msnabiel/OpenGPT) is a specialized RAG chatbot framework that utilizes [ChromaDB](https://github.com/chroma-core/chroma) to deliver answers based solely on a specific knowledge base. It integrates with various language models, including OpenAI, Gemini, and LaMini, to provide precise information relevant to the context of the query. Users can upload documents to the knowledge base and modify it as needed to tailor the chatbot's responses to their requirements.
 
 ## Snapshots
 
