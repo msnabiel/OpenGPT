@@ -5,6 +5,9 @@
 ## Snapshots
 
 ![Diagram](images/image_1.png)
+## Detailed Data Flow Diagram 
+
+![Diagram](images/OpenGPT_DFD_colored.png)
 
 ## Project Structure
 
