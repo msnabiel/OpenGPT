@@ -11,7 +11,7 @@
 ![Diagram](images/Simple_Flow.png)
 ## Detailed Data Flow Diagram 
 
-![Diagram](images/OpenGPT_DFD_colored.png)
+![Diagram](images/OPRNGPT_DFD.png)
 
 ## Project Structure
 
