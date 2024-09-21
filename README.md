@@ -5,6 +5,10 @@
 ## Snapshots
 
 ![Diagram](images/image_1.png)
+
+## Simple Data Flow Diagram 
+
+![Diagram](images/Simple_Flow.png)
 ## Detailed Data Flow Diagram 
 
 ![Diagram](images/OpenGPT_DFD_colored.png)
